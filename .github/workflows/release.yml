@@ -55,7 +55,7 @@ jobs:
           --enable-gi
           --py-wheel
           --skip gtksourceview4,emeus,clutter
-          gtk4-full pycairo pygobject lz4 enchant
+          gtk4 pycairo pygobject lz4 enchant
 
       - name: Restore git binary
         run: Rename-Item  "C:\Program Files\Git\usr\notbin" bin
