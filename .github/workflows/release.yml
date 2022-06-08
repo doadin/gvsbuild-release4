@@ -46,9 +46,13 @@ jobs:
         # Temporarily move preinstalled git to prevent errors related to cygwin.
         run: Rename-Item "C:\Program Files\Git\usr\bin" notbin
 
+      - name: Pre-Build
+        run: 
+          pip install .
+
       - name: Build
         run: >
-          poetry run gvsbuild build
+          gvsbuild build
           --platform=${{ matrix.arch }}
           --vs-ver=${{ matrix.vstudio }}
           --same-python
