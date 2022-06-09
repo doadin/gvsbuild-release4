@@ -33,7 +33,7 @@ jobs:
           architecture: ${{ matrix.arch }}
 
       - name: Install Build Deps
-        run: python -m pip install wheel
+        run: python -m pip install wheel build
 
       - name: Install Poetry
         run: python -m pip install poetry==1.1.13
@@ -58,6 +58,7 @@ jobs:
           --same-python
           --enable-gi
           --py-wheel
+          --patches-root-dir=${{ github.workspace }}\patches
           --skip gtksourceview4,emeus,clutter
           gtk4 pycairo pygobject lz4 enchant
 
