@@ -59,7 +59,7 @@ jobs:
           --vs-ver=${{ matrix.vstudio }}
           --enable-gi
           --py-wheel
-          gtk4-full pycairo pygobject lz4 enchant
+          gtk4 pycairo pygobject lz4 enchant
 
       - name: Restore git binary
         run: Rename-Item  "C:\Program Files\Git\usr\notbin" bin
