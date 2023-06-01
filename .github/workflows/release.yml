@@ -54,7 +54,7 @@ jobs:
       - name: Build
         run: >
           gvsbuild build
-          --skip gtksourceview4,emeus,clutter
+          --skip gtksourceview4 emeus clutter
           --platform=${{ matrix.arch }}
           --vs-ver=${{ matrix.vstudio }}
           --enable-gi
