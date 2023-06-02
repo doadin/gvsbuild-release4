@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        python: ["3.9", "3.10"]
+        python: ["3.9","3.10"]
         platform: [x64, win32]
         vstudio: [16]
         include:
@@ -45,16 +45,15 @@ jobs:
 
       - name: Move git binary
         # Temporarily move preinstalled git to prevent errors related to cygwin.
-        run: Rename-Item "C:\Program Files\Git\usr\bin" notbin
-
-      - name: Pre-Build
-        run: 
-          pip install .
+        run: |
+          Rename-Item "C:\Program Files\Git\usr\bin" notbin
+          Rename-Item "C:\Program Files\Git\bin" notbin
 
       - name: Build
         run: >
           gvsbuild build
           --skip gtksourceview4 emeus clutter
+          --configuration=release
           --platform=${{ matrix.arch }}
           --vs-ver=${{ matrix.vstudio }}
           --enable-gi
@@ -62,7 +61,9 @@ jobs:
           gtk4 pycairo pygobject lz4 enchant
 
       - name: Restore git binary
-        run: Rename-Item  "C:\Program Files\Git\usr\notbin" bin
+        run: |
+          Rename-Item  "C:\Program Files\Git\usr\notbin" bin
+          Rename-Item  "C:\Program Files\Git\notbin" bin
 
       - name: Zip Bundle
         run: >
